@@ -1,33 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bestest Team's Final VR Project</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Bestest Team · VR Final Project — VR Spray Studio</title>
+<meta name="description" content="Bestest Team's VR Final Project: VR Spray Studio — a creative VR art space to spray‑paint 3D objects and practice technique." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
-    <p> Cian Kaisharis:<br>
+    <div class="wrap">
+        <header class="hero" aria-labelledby="site-title">
+            <span class="badge" aria-label="course and team">Bestest Team · VR Final</span>
+            <h1 id="site-title" class="title">VR Spray Studio</h1>
+            <p class="subtitle">A creative VR art space to practice spray‑painting <strong>directly on 3D
+                    objects</strong>—from simple shapes to complex sculptures—so artists can develop real techniques in
+                an immersive, low‑stakes environment.</p>
 
+            <div class="hero-grid" role="region" aria-label="project summary">
+                <div class="hero-card">
+                    <h2 style="margin: 0 0 8px; font-size: 18px;">Project Snapshot</h2>
+                    <ul style="margin: 0; padding-left: 18px; color: var(--muted);">
+                        <li>Platform: Unity 6</li>
+                        <li>Interaction: Controller‑based spray can with pressure/flow; optional hand poses for grip
+                        </li>
+                        <li>Focus: Technique drills on 3D targets (cubes, spheres, mannequins, car door, etc.)</li>
+                    </ul>
+                </div>
+            </div>
+            <br>
+            <div class="hero-card">
+                <h2 style="margin: 0 0 8px; font-size: 18px;">What you'll do</h2>
+                <p style="margin: 0; color: var(--muted);">Pick a 3D object, choose a nozzle, and paint. Simple as that.
+                </p>
+            </div>
+    </div>
+    </header>
 
-        <img width="318" height="285" alt="Picture of Cian" src="https://github.com/user-attachments/assets/99bf1abc-3451-49b7-b8aa-e8328a0f9c31"/><br>
+    <section class="section grid" aria-labelledby="about">
+        <div class="col-7">
+            <div class="card">
+                <h2 id="about">About the Project</h2>
+                <p>
+                    <strong>VR Spray Studio</strong> is a focused, technique‑first VR art experience. Instead of
+                    painting on flat canvases, you paint directly on <em>three‑dimensional forms</em>—like spheres,
+                    mannequins, and vehicle panels—so your strokes must follow real curves and edges. The goal is to
+                    help artists build muscle memory for line control, distance, angle, and motion.
+                </p>
+                <div class="features" role="list" aria-label="feature highlights">
+                    <div class="feature" role="listitem">
+                        <div class="dot" aria-hidden="true"></div>
+                        <div>
+                            <strong>Physically‑inspired spray model</strong>
+                            <p style="margin: 6px 0 0; color: var(--muted);">Variable cone, falloff, and jitter mapped
+                                to trigger pressure; decals/projected paint that conforms to mesh normals.</p>
+                        </div>
+                    </div>
+                    <div class="feature" role="listitem">
+                        <div class="dot" aria-hidden="true"></div>
+                        <div>
+                            <strong>Layers, stencils</strong>
+                            <p style="margin: 6px 0 0; color: var(--muted);">Simple layer stack with blend modes; place
+                                stencils on surfaces</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        Cian is a senior majoring in Computer Science with strong proficiency in Python, Java, and JavaScript. He
-        currently works as a Detection Engineer Intern at Cybriant, where he applies his technical and analytical skills
-        to enhance cybersecurity operations. With a solid foundation in software development and a growing passion for
-        threat detection and data analysis, Cian is dedicated to developing secure, efficient, and innovative solutions
-        that strengthen organizational defenses and improve overall system performance.<br>
+        <div class="col-5">
+            <div class="card">
+                <h2 id="milestones">Milestones</h2>
+                <ol style="margin: 0 0 12px 18px;">
+                    <li>Spray shader + controller input (pressure/flow)</li>
+                    <li>Surface projection & UV‑correct decals</li>
+                    <li>Layers, stencils, and basic gallery</li>
+                    <li>Polish, UX pass, and performance (60 FPS)</li>
+                </ol>
+            </div>
+        </div>
+    </section>
 
-        William Cox:<br>
+    <section class="section" aria-labelledby="team">
+        <div class="card">
+            <h2 id="team">Team</h2>
+            <div class="team" role="list">
+                <article class="person" role="listitem">
+                    <img src="https://github.com/user-attachments/assets/99bf1abc-3451-49b7-b8aa-e8328a0f9c31"
+                        alt="Portrait of Cian Kaisharis" width="318" height="220" loading="lazy" />
+                    <div class="bio">
+                        <h3>Cian Kaisharis</h3>
+                        <p>Cian is a senior majoring in Computer Science with strong proficiency in Python, Java, and
+                            JavaScript. He currently works as a Detection Engineer Intern at Cybriant, where he applies
+                            his technical and analytical skills to enhance cybersecurity operations. With a solid
+                            foundation in software development and a growing passion for threat detection and data
+                            analysis, Cian is dedicated to developing secure, efficient, and innovative solutions that
+                            strengthen organizational defenses and improve overall system performance.</p>
+                    </div>
+                </article>
+                <article class="person" role="listitem">
+                    <img src="Will_Headshot.png"
+                        alt="Portrait of William Cox" width="318" height="220" loading="lazy" />
+                    <div class="bio">
+                        <h3>William Cox</h3>
+                        <p>William is a senior at UGA in Computer Science. He has worked as an IT QA Analyst Co‑op and a
+                            CPLM Development Co‑op at Gulfstream Aerospace. Interests include VR, robotics, gaming, and
+                            3D printing.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
 
-        <img width="318" height="285" alt="Picture of William"
-            src="https://github.com/user-attachments/assets/b360d373-a1c4-4f69-a52a-f089844b45a9" /><br>
+    <footer class="footer">
+        <p>© <span id="year"></span> Bestest Team • VR Final Project • <span style="color: #b9c2cc">UGA — CS</span></p>
+    </footer>
+    </div>
 
-        I am a Senior at UGA studying Computer Science with experience working as an IT QA Analyst Co-op, as well as a
-        CPLM Development Co-op at Gulfstream Aerospace Corporation. I love playing videogames, playing with my cat Suki,
-        and more recently have gotten into 3D printing. In the future I hope to work in Robotics.<br>
-    </p>
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
 </body>
 
 </html>
