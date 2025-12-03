@@ -1,11 +1,12 @@
-﻿using LearnXR.Core.Utilities;
+using LearnXR.Core.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.Netcode;
 using UnityEngine;
 
-public class MeasureTapeFeature : MonoBehaviour
+public class MeasureTapeFeature : NetworkBehaviour
 {
     [Range(0.005f, 0.05f)]
     [SerializeField] private float tapeWidth = 0.01f;
@@ -23,6 +24,7 @@ public class MeasureTapeFeature : MonoBehaviour
 
 
     private List<MeasuringTape> savedTapeLines = new();
+    private Dictionary<ulong, List<MeasuringTape>> clientTapeLines = new();
     private TextMeshPro lastMeasurementInfo;
     private LineRenderer lastTapeLineRenderer;
 
@@ -40,6 +42,8 @@ public class MeasureTapeFeature : MonoBehaviour
 
     void Update()
     {
+        if (!IsSpawned) return;
+
         if (!OVRInput.IsControllerConnected(OVRInput.Controller.LTouch) && !OVRInput.IsControllerConnected(OVRInput.Controller.RTouch))
         {
             return;
@@ -77,6 +81,11 @@ public class MeasureTapeFeature : MonoBehaviour
     {
         CreateNewTapeLine(tapeArea.position);
         AttachAndDetachMeasurementInfo(tapeArea);
+        
+        if (IsSpawned)
+        {
+            CreateTapeLineServerRpc(savedTapeLines.Count - 1, tapeArea.position);
+        }
     }
 
     private void HandleHoldAction(Transform tapeArea)
@@ -84,12 +93,21 @@ public class MeasureTapeFeature : MonoBehaviour
             lastTapeLineRenderer.SetPosition(1, tapeArea.position);
             CalculateMeasurements();
             AttachAndDetachMeasurementInfo(tapeArea);
+            
+            if (IsSpawned)
+            {
+                UpdateTapeLineServerRpc(savedTapeLines.Count - 1, tapeArea.position);
+            }
     }
 
     private void HandleUpAction(Transform tapeArea)
     {
         AttachAndDetachMeasurementInfo(tapeArea, false);
-
+        
+        if (IsSpawned)
+        {
+            FinalizeTapeLineServerRpc(savedTapeLines.Count - 1, tapeArea.position);
+        }
     }
 
     private void CreateNewTapeLine(Vector3 initialPosition)
@@ -152,8 +170,138 @@ public class MeasureTapeFeature : MonoBehaviour
     {
         foreach (var tapeLine in savedTapeLines)
         {
-            Destroy(tapeLine.TapeLine);
+            if (tapeLine.TapeLine != null)
+                Destroy(tapeLine.TapeLine);
         }
         savedTapeLines.Clear();
+
+        foreach (var clientTapes in clientTapeLines.Values)
+        {
+            foreach (var tapeLine in clientTapes)
+            {
+                if (tapeLine.TapeLine != null)
+                    Destroy(tapeLine.TapeLine);
+            }
+        }
+        clientTapeLines.Clear();
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    private void CreateTapeLineServerRpc(int index, Vector3 initialPosition, ServerRpcParams rpcParams = default)
+    {
+        CreateTapeLineClientRpc(index, initialPosition, rpcParams.Receive.SenderClientId);
+    }
+
+    [ClientRpc]
+    private void CreateTapeLineClientRpc(int index, Vector3 initialPosition, ulong senderClientId)
+    {
+        if (NetworkManager.Singleton.LocalClientId == senderClientId) return;
+
+        if (!clientTapeLines.ContainsKey(senderClientId))
+        {
+            clientTapeLines[senderClientId] = new List<MeasuringTape>();
+        }
+
+        CreateNewTapeLineForClient(senderClientId, initialPosition);
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    private void UpdateTapeLineServerRpc(int index, Vector3 endPosition, ServerRpcParams rpcParams = default)
+    {
+        UpdateTapeLineClientRpc(index, endPosition, rpcParams.Receive.SenderClientId);
+    }
+
+    [ClientRpc]
+    private void UpdateTapeLineClientRpc(int index, Vector3 endPosition, ulong senderClientId)
+    {
+        if (NetworkManager.Singleton.LocalClientId == senderClientId) return;
+
+        if (clientTapeLines.ContainsKey(senderClientId) && index >= 0 && index < clientTapeLines[senderClientId].Count)
+        {
+            var tape = clientTapeLines[senderClientId][index];
+            if (tape.TapeLine != null)
+            {
+                var lineRenderer = tape.TapeLine.GetComponent<LineRenderer>();
+                if (lineRenderer != null)
+                {
+                    lineRenderer.SetPosition(1, endPosition);
+                    UpdateMeasurementForClientTape(senderClientId, index);
+                }
+            }
+        }
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    private void FinalizeTapeLineServerRpc(int index, Vector3 endPosition, ServerRpcParams rpcParams = default)
+    {
+        FinalizeTapeLineClientRpc(index, endPosition, rpcParams.Receive.SenderClientId);
+    }
+
+    [ClientRpc]
+    private void FinalizeTapeLineClientRpc(int index, Vector3 endPosition, ulong senderClientId)
+    {
+        if (NetworkManager.Singleton.LocalClientId == senderClientId) return;
+
+        if (clientTapeLines.ContainsKey(senderClientId) && index >= 0 && index < clientTapeLines[senderClientId].Count)
+        {
+            var tape = clientTapeLines[senderClientId][index];
+            if (tape.TapeLine != null)
+            {
+                var lineRenderer = tape.TapeLine.GetComponent<LineRenderer>();
+                if (lineRenderer != null)
+                {
+                    lineRenderer.SetPosition(1, endPosition);
+                    UpdateMeasurementForClientTape(senderClientId, index);
+                    
+                    if (tape.TapeInfo != null)
+                    {
+                        tape.TapeInfo.transform.SetParent(lineRenderer.transform);
+                        var lineDirection = lineRenderer.GetPosition(0) - lineRenderer.GetPosition(1);
+                        Vector3 lineCrossProduct = Vector3.Cross(lineDirection, Vector3.up);
+                        Vector3 lineMidPoint = (lineRenderer.GetPosition(0) + lineRenderer.GetPosition(1)) / 2.0f;
+                        tape.TapeInfo.transform.position = lineMidPoint + (lineCrossProduct.normalized * measurementInfoLength);
+                    }
+                }
+            }
+        }
+    }
+
+    private void CreateNewTapeLineForClient(ulong clientId, Vector3 initialPosition)
+    {
+        var newTapeLine = new GameObject($"TapeLine_Client{clientId}_{clientTapeLines[clientId].Count}", typeof(LineRenderer));
+
+        var lineRenderer = newTapeLine.GetComponent<LineRenderer>();
+        lineRenderer.positionCount = 2;
+        lineRenderer.startWidth = tapeWidth;
+        lineRenderer.endWidth = tapeWidth;
+        lineRenderer.material = tapeMaterial;
+        lineRenderer.SetPosition(0, initialPosition);
+        lineRenderer.SetPosition(1, initialPosition);
+
+        var measurementInfo = Instantiate(measurementInfoPrefab, Vector3.zero, Quaternion.identity).GetComponent<TextMeshPro>();
+        measurementInfo.GetComponent<BillboardAlignment>().AttachTo(cameraRig.centerEyeAnchor);
+        measurementInfo.gameObject.SetActive(true);
+
+        clientTapeLines[clientId].Add(new MeasuringTape
+        {
+            TapeLine = newTapeLine,
+            TapeInfo = measurementInfo,
+        });
+    }
+
+    private void UpdateMeasurementForClientTape(ulong clientId, int index)
+    {
+        if (clientTapeLines.ContainsKey(clientId) && index >= 0 && index < clientTapeLines[clientId].Count)
+        {
+            var tape = clientTapeLines[clientId][index];
+            if (tape.TapeLine != null && tape.TapeInfo != null)
+            {
+                var lineRenderer = tape.TapeLine.GetComponent<LineRenderer>();
+                var distance = Vector3.Distance(lineRenderer.GetPosition(0), lineRenderer.GetPosition(1));
+                var inches = MeasuringTape.MetersToInches(distance);
+                var centimeters = MeasuringTape.MetersToCentimeters(distance);
+                tape.TapeInfo.text = string.Format(measurementInfoFormat, $"{inches:F2}″ <i>{centimeters:F2}cm</i>");
+            }
+        }
     }
 }
