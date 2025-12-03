@@ -1097,10 +1097,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 132518699}
-  - component: {fileID: 132518698}
   - component: {fileID: 132518697}
   m_Layer: 0
-  m_Name: '[BuildingBlock] Local Matchmaking'
+  m_Name: Local Matchmaking
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1120,24 +1119,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   automaticHostOrJoin: 1
   timeDiscoveringInSec: 5
---- !u!114 &132518698
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 132518696}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b023183069df224080314a560e6e1ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blockId: 9141594f-eab4-43f9-b05e-17f2f40db586
-  instanceId: c14b4119-2f8f-4438-afcb-2cd59fe0e8e5
-  version: 1
-  installationRoutineCheckpoint:
-    _installationRoutineId: 871efd9e-7c98-49a6-bd84-bf6663c44e3f
-    _installationVariants: []
 --- !u!4 &132518699
 Transform:
   m_ObjectHideFlags: 0
@@ -3991,10 +3972,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 686331851}
-  - component: {fileID: 686331850}
   - component: {fileID: 686331849}
   m_Layer: 0
-  m_Name: '[BuildingBlock] Platform Init'
+  m_Name: Platform Init
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4012,24 +3992,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c8d545e0ca2b5a4ea59ba7ea935a248, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &686331850
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 686331848}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b023183069df224080314a560e6e1ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blockId: 40089589-8290-4ae3-a056-d9ca1ccaa35a
-  instanceId: e2198682-db22-4126-95b4-9db1f3b1e6f6
-  version: 1
-  installationRoutineCheckpoint:
-    _installationRoutineId: 
-    _installationVariants: []
 --- !u!4 &686331851
 Transform:
   m_ObjectHideFlags: 0
@@ -5590,11 +5552,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 968786902}
-  - component: {fileID: 968786901}
   - component: {fileID: 968786900}
   - component: {fileID: 968786899}
   m_Layer: 0
-  m_Name: '[BuildingBlock] Network Manager'
+  m_Name: Network Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5666,26 +5627,6 @@ MonoBehaviour:
     OldPrefabList: []
   RunInBackground: 1
   LogLevel: 1
---- !u!114 &968786901
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 968786898}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b023183069df224080314a560e6e1ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blockId: 1d8db162-54f6-43df-b4ef-b499df1f6769
-  instanceId: 8e087247-3e68-4f58-9e9e-da19397b5c2b
-  version: 1
-  installationRoutineCheckpoint:
-    _installationRoutineId: 45364db4-f880-45c3-9d76-d366c46500d3
-    _installationVariants:
-    - _memberName: installMatchmaking
-      _value: '{"value__":0}'
 --- !u!4 &968786902
 Transform:
   m_ObjectHideFlags: 0
@@ -5780,10 +5721,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 987207132}
-  - component: {fileID: 987207131}
   - component: {fileID: 987207130}
   m_Layer: 0
-  m_Name: '[BuildingBlock] MR Utility Kit'
+  m_Name: MR Utility Kit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5859,24 +5799,6 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   _immersiveSceneDebuggerPrefab: {fileID: 7641788235762528044, guid: 950d12aea00a70449b5b7b746f142acf, type: 3}
---- !u!114 &987207131
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 987207129}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b023183069df224080314a560e6e1ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blockId: d4413f4f-542f-451f-92ee-4801f27d676a
-  instanceId: 174bb2e0-94a3-4049-8eb1-21fd39739cc6
-  version: 1
-  installationRoutineCheckpoint:
-    _installationRoutineId: 
-    _installationVariants: []
 --- !u!4 &987207132
 Transform:
   m_ObjectHideFlags: 0
@@ -6120,12 +6042,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1034678702}
-  - component: {fileID: 1034678701}
   - component: {fileID: 1034678700}
   - component: {fileID: 1034678699}
   - component: {fileID: 1034678698}
   m_Layer: 0
-  m_Name: '[BuildingBlock] Player Name Tag'
+  m_Name: Player Name Tag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6189,26 +6110,6 @@ MonoBehaviour:
   AutoObjectParentSync: 1
   SyncOwnerTransformWhenParented: 1
   AllowOwnerToParent: 0
---- !u!114 &1034678701
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1034678697}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b023183069df224080314a560e6e1ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blockId: 97a7e1ae-ac65-4ee6-9167-10b3b94782f6
-  instanceId: 89710095-ea55-46bb-8abe-65f21636e994
-  version: 1
-  installationRoutineCheckpoint:
-    _installationRoutineId: 5fa4d807-dad5-45f9-8d2a-fd910366fd35
-    _installationVariants:
-    - _memberName: installMatchmaking
-      _value: '{"value__":0}'
 --- !u!4 &1034678702
 Transform:
   m_ObjectHideFlags: 0
@@ -6527,10 +6428,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1061269604}
-  - component: {fileID: 1061269603}
   - component: {fileID: 1061269602}
   m_Layer: 0
-  m_Name: '[BuildingBlock] Passthrough'
+  m_Name: Passthrough
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6602,24 +6502,6 @@ MonoBehaviour:
   edgeRenderingEnabled_: 0
   edgeColor_: {r: 1, g: 1, b: 1, a: 1}
   colorMapType: 0
---- !u!114 &1061269603
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1061269601}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b023183069df224080314a560e6e1ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blockId: f0540b20-dfd6-420e-b20d-c270f88dc77e
-  instanceId: d21560fa-be88-460f-a0a3-30112bb9c0da
-  version: 1
-  installationRoutineCheckpoint:
-    _installationRoutineId: 
-    _installationVariants: []
 --- !u!4 &1061269604
 Transform:
   m_ObjectHideFlags: 0
@@ -6948,11 +6830,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1142142878}
-  - component: {fileID: 1142142877}
   - component: {fileID: 1142142876}
   - component: {fileID: 1142142875}
   m_Layer: 0
-  m_Name: '[BuildingBlock] Colocation'
+  m_Name: Colocation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6990,28 +6871,6 @@ MonoBehaviour:
   DebuggingOptions:
     visualizeAlignmentAnchor: 1
     enableVerboseLogging: 0
---- !u!114 &1142142877
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1142142874}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b023183069df224080314a560e6e1ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blockId: f308c8f0-7a4b-4cd5-88be-c15b6399f823
-  instanceId: 1eb1c9c3-276e-4059-97a1-b1f29bb5cd9d
-  version: 3
-  installationRoutineCheckpoint:
-    _installationRoutineId: 4ec10206-4327-44cd-ae75-ff2b80d3422e
-    _installationVariants:
-    - _memberName: shareSpaceToGuests
-      _value: '{}'
-    - _memberName: installMatchmaking
-      _value: '{"value__":0}'
 --- !u!4 &1142142878
 Transform:
   m_ObjectHideFlags: 0
@@ -7088,6 +6947,126 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1787585418}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1155389035
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1155389039}
+  - component: {fileID: 1155389038}
+  - component: {fileID: 1155389037}
+  - component: {fileID: 1155389036}
+  m_Layer: 0
+  m_Name: '[BuildingBlock] Network Manager'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1155389036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1155389035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6960e84d07fb87f47956e7a81d71c4e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ProtocolType: 0
+  m_UseWebSockets: 0
+  m_UseEncryption: 0
+  m_MaxPacketQueueSize: 128
+  m_MaxPayloadSize: 6144
+  m_HeartbeatTimeoutMS: 500
+  m_ConnectTimeoutMS: 1000
+  m_MaxConnectAttempts: 60
+  m_DisconnectTimeoutMS: 30000
+  ConnectionData:
+    Address: 127.0.0.1
+    Port: 7777
+    ServerListenAddress: 127.0.0.1
+  DebugSimulator:
+    PacketDelayMS: 0
+    PacketJitterMS: 0
+    PacketDropRate: 0
+--- !u!114 &1155389037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1155389035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 593a2fe42fa9d37498c96f9a383b6521, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NetworkConfig:
+    ProtocolVersion: 0
+    NetworkTransport: {fileID: 1155389036}
+    PlayerPrefab: {fileID: 0}
+    Prefabs:
+      NetworkPrefabsLists:
+      - {fileID: 11400000, guid: 9e7743e1094b0ae4bbb00dbce0b7b286, type: 2}
+    TickRate: 30
+    ClientConnectionBufferTimeout: 10
+    ConnectionApproval: 0
+    ConnectionData: 
+    EnableTimeResync: 0
+    TimeResyncInterval: 30
+    EnsureNetworkVariableLengthSafety: 0
+    EnableSceneManagement: 1
+    ForceSamePrefabs: 0
+    RecycleNetworkIds: 1
+    NetworkIdRecycleDelay: 120
+    RpcHashSize: 0
+    LoadSceneTimeOut: 120
+    SpawnTimeout: 10
+    EnableNetworkLogs: 1
+    OldPrefabList: []
+  RunInBackground: 1
+  LogLevel: 1
+--- !u!114 &1155389038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1155389035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b023183069df224080314a560e6e1ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockId: 1d8db162-54f6-43df-b4ef-b499df1f6769
+  instanceId: 0ed6cb3c-ee29-45d3-85f4-18caeb2905f3
+  version: 1
+  installationRoutineCheckpoint:
+    _installationRoutineId: 45364db4-f880-45c3-9d76-d366c46500d3
+    _installationVariants:
+    - _memberName: installMatchmaking
+      _value: '{"value__":0}'
+--- !u!4 &1155389039
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1155389035}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1158510203
 GameObject:
@@ -7355,10 +7334,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1198738341}
-  - component: {fileID: 1198738340}
   - component: {fileID: 1198738339}
   m_Layer: 0
-  m_Name: '[BuildingBlock] Auto Matchmaking'
+  m_Name: Auto Matchmaking
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7380,26 +7358,6 @@ MonoBehaviour:
   lobbyName: lobbyName
   maxRetries: 3
   retryInterval: {x: 1, y: 3}
---- !u!114 &1198738340
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1198738338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b023183069df224080314a560e6e1ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blockId: d45b4309-f823-42e4-b871-0f58e8e647d8
-  instanceId: ddd0e0f4-e936-47ab-bfea-d9c948c4ff8e
-  version: 1
-  installationRoutineCheckpoint:
-    _installationRoutineId: 0d740637-ae4c-40f5-98e2-1a9bac152d35
-    _installationVariants:
-    - _memberName: installMatchmaking
-      _value: '{"value__":0}'
 --- !u!4 &1198738341
 Transform:
   m_ObjectHideFlags: 0
@@ -8053,11 +8011,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1301825123}
-  - component: {fileID: 1301825122}
   - component: {fileID: 1301825121}
   - component: {fileID: 1301825120}
   m_Layer: 0
-  m_Name: '[BuildingBlock] Shared Spatial Anchor Core'
+  m_Name: Shared Spatial Anchor Core
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8170,24 +8127,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1301825122
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1301825119}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98d1784a0f55a9a44adf70f414591cd2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blockId: 975428dc-db04-4e43-be4a-232f192cd3eb
-  instanceId: 4781f5fc-38b5-4bd1-a71b-0873ac08da1b
-  version: 1
-  installationRoutineCheckpoint:
-    _installationRoutineId: 
-    _installationVariants: []
 --- !u!4 &1301825123
 Transform:
   m_ObjectHideFlags: 0
@@ -8761,7 +8700,7 @@ GameObject:
   - component: {fileID: 1347699362}
   - component: {fileID: 1347699361}
   m_Layer: 0
-  m_Name: '[BuildingBlock] Cube'
+  m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10332,11 +10271,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1615353642}
-  - component: {fileID: 1615353641}
   - component: {fileID: 1615353640}
   - component: {fileID: 1615353639}
   m_Layer: 0
-  m_Name: '[BuildingBlock] Custom Matchmaking'
+  m_Name: Custom Matchmaking
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10380,26 +10318,6 @@ MonoBehaviour:
   isPrivate: 0
   maxPlayersPerRoom: 4
   isPasswordProtected: 0
---- !u!114 &1615353641
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1615353638}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b023183069df224080314a560e6e1ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blockId: c5bea02f-8079-4142-87f9-56da5993f861
-  instanceId: 86d96209-2853-4d58-a99a-4888a25cd337
-  version: 1
-  installationRoutineCheckpoint:
-    _installationRoutineId: 0c456cf4-4441-4639-9b87-784ce8c2e6ca
-    _installationVariants:
-    - _memberName: installMatchmaking
-      _value: '{"value__":0}'
 --- !u!4 &1615353642
 Transform:
   m_ObjectHideFlags: 0
@@ -29457,11 +29375,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4630319888969021578, guid: 277c4191fdab914448c391657e0b93b0, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 734010867}
+      insertIndex: 1
+      addedObject: {fileID: 734010866}
     - targetCorrespondingSourceObject: {fileID: 4630319888969021578, guid: 277c4191fdab914448c391657e0b93b0, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 734010866}
+      addedObject: {fileID: 734010867}
     - targetCorrespondingSourceObject: {fileID: 4630319888969021578, guid: 277c4191fdab914448c391657e0b93b0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 734010868}
@@ -96923,3 +96841,4 @@ SceneRoots:
   - {fileID: 1034678702}
   - {fileID: 1301825123}
   - {fileID: 1347699360}
+  - {fileID: 1155389039}
