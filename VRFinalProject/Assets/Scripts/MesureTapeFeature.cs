@@ -81,7 +81,7 @@ public class MeasureTapeFeature : MonoBehaviour
         lastTapeLineRenderer.endWidth = tapeWidth;
         lastTapeLineRenderer.material = tapeMaterial;
         lastTapeLineRenderer.SetPosition(0, initialPosition);
-        lastTapeLineRenderer.SetPosition(1, initialPosition);
+        //lastTapeLineRenderer.SetPosition(1, initialPosition);
 
         savedTapeLines.Add(newTapeLine);
     }

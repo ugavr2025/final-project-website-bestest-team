@@ -5785,7 +5785,6 @@ Transform:
   - {fileID: 768646472}
   - {fileID: 207993023}
   - {fileID: 97288699}
-  - {fileID: 1322222388}
   m_Father: {fileID: 1084742981}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1058835118
@@ -5862,6 +5861,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1058835117}
+  - {fileID: 1322222388}
   m_Father: {fileID: 1243491498}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1098998344
@@ -6656,7 +6656,6 @@ Transform:
   - {fileID: 269200272}
   - {fileID: 286106849}
   - {fileID: 1308005300}
-  - {fileID: 1775479422}
   m_Father: {fileID: 1333413665}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1233117319
@@ -7120,7 +7119,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1058835117}
+    m_TransformParent: {fileID: 1084742981}
     m_Modifications:
     - target: {fileID: 3813864110159232684, guid: 4afc9451b6f5e0246a73dd566a8aaefa, type: 3}
       propertyPath: m_Name
@@ -7128,7 +7127,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6416495158801193076, guid: 4afc9451b6f5e0246a73dd566a8aaefa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.4918
+      value: -0.0065
       objectReference: {fileID: 0}
     - target: {fileID: 6416495158801193076, guid: 4afc9451b6f5e0246a73dd566a8aaefa, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7206,6 +7205,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1233117318}
+  - {fileID: 1775479422}
   m_Father: {fileID: 288580546}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1336393275
@@ -9422,7 +9422,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1233117318}
+    m_TransformParent: {fileID: 1333413665}
     m_Modifications:
     - target: {fileID: 3813864110159232684, guid: 4afc9451b6f5e0246a73dd566a8aaefa, type: 3}
       propertyPath: m_Name
@@ -9430,7 +9430,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6416495158801193076, guid: 4afc9451b6f5e0246a73dd566a8aaefa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.509
+      value: 0.0065
       objectReference: {fileID: 0}
     - target: {fileID: 6416495158801193076, guid: 4afc9451b6f5e0246a73dd566a8aaefa, type: 3}
       propertyPath: m_LocalPosition.y
