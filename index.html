@@ -1,130 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
-
-
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Bestest Team · VR Final Project — VR Spray Studio</title>
-<meta name="description" content="Bestest Team's VR Final Project: VR Spray Studio — a creative VR art space to spray‑paint 3D objects and practice technique." />
+<title>Bestest Team · MR Productivity App</title>
+<meta name="description" content="Mixed Reality Productivity App — measuring tape, level tool, and reference frame utilities built with Meta XR SDK." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css" />
 </head>
-
 <body>
-    <div class="wrap">
-        <header class="hero" aria-labelledby="site-title">
-            <span class="badge" aria-label="course and team">Bestest Team · VR Final</span>
-            <h1 id="site-title" class="title">VR Spray Studio</h1>
-            <p class="subtitle">A creative VR art space to practice spray‑painting <strong>directly on 3D
-                    objects</strong>—from simple shapes to complex sculptures—so artists can develop real techniques in
-                an immersive, low‑stakes environment.</p>
+<div class="wrap">
+<header class="hero" aria-labelledby="site-title">
+<span class="badge">Bestest Team · MR Project</span>
+<h1 id="site-title" class="title">Mixed Reality Productivity App</h1>
+<p class="subtitle">
+Today's challenge: building a complete <strong>mixed reality productivity app</strong> from the ground up using <strong>Meta XR All‑in‑One SDK</strong> and MAAS building blocks.
+</p>
 
-            <div class="hero-grid" role="region" aria-label="project summary">
-                <div class="hero-card">
-                    <h2 style="margin: 0 0 8px; font-size: 18px;">Project Snapshot</h2>
-                    <ul style="margin: 0; padding-left: 18px; color: var(--muted);">
-                        <li>Platform: Unity 6</li>
-                        <li>Interaction: Controller‑based spray can with pressure/flow; optional hand poses for grip
-                        </li>
-                        <li>Focus: Technique drills on 3D targets (cubes, spheres, mannequins, car door, etc.)</li>
-                    </ul>
-                </div>
-            </div>
-            <br>
-            <div class="hero-card">
-                <h2 style="margin: 0 0 8px; font-size: 18px;">What you'll do</h2>
-                <p style="margin: 0; color: var(--muted);">Pick a 3D object, choose a nozzle, and paint. Simple as that.
-                </p>
-            </div>
-    </div>
-    </header>
+<div class="hero-grid">
+<div class="hero-card">
+<h2>Project Snapshot</h2>
+<ul>
+<li>Platform: Unity 6 + Meta XR All‑in‑One SDK</li>
+<li>Features: MR measuring tape, measurement labels, level tool, reference frame generator</li>
+<li>Tools: MAAS building blocks, passthrough, camera rig, XR core package</li>
+</ul>
+</div>
+</div>
 
-    <section class="section grid" aria-labelledby="about">
-        <div class="col-7">
-            <div class="card">
-                <h2 id="about">About the Project</h2>
-                <p>
-                    <strong>VR Spray Studio</strong> is a focused, technique‑first VR art experience. Instead of
-                    painting on flat canvases, you paint directly on <em>three‑dimensional forms</em>—like spheres,
-                    mannequins, and vehicle panels—so your strokes must follow real curves and edges. The goal is to
-                    help artists build muscle memory for line control, distance, angle, and motion.
-                </p>
-                <div class="features" role="list" aria-label="feature highlights">
-                    <div class="feature" role="listitem">
-                        <div class="dot" aria-hidden="true"></div>
-                        <div>
-                            <strong>Physically‑inspired spray model</strong>
-                            <p style="margin: 6px 0 0; color: var(--muted);">Variable cone, falloff, and jitter mapped
-                                to trigger pressure; decals/projected paint that conforms to mesh normals.</p>
-                        </div>
-                    </div>
-                    <div class="feature" role="listitem">
-                        <div class="dot" aria-hidden="true"></div>
-                        <div>
-                            <strong>Layers, stencils</strong>
-                            <p style="margin: 6px 0 0; color: var(--muted);">Simple layer stack with blend modes; place
-                                stencils on surfaces</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div class="hero-card">
+<h2>What you'll build</h2>
+<p>Set up MR utilities including a measuring tape, real‑time distance labels, a level tool, and an automated frame‑mount generator.</p>
+</div>
+</header>
 
-        <div class="col-5">
-            <div class="card">
-                <h2 id="milestones">Milestones</h2>
-                <ol style="margin: 0 0 12px 18px;">
-                    <li>Spray shader + controller input (pressure/flow)</li>
-                    <li>Surface projection & UV‑correct decals</li>
-                    <li>Layers, stencils, and basic gallery</li>
-                    <li>Polish, UX pass, and performance (60 FPS)</li>
-                </ol>
-            </div>
-        </div>
-    </section>
+<section class="section grid" aria-labelledby="about">
+<div class="col-7">
+<div class="card">
+<h2 id="about">About the Project</h2>
+<p>
+This MR Productivity App focuses on giving users accurate, real‑world utilities inside mixed reality. We begin by building a <strong>measuring tape</strong> you can stretch between two points, then add <strong>measurement labels</strong> that update in inches and centimeters.
+</p>
+<p>
+Next, we incorporate a <strong>level tool</strong> to check whether surfaces or frames are properly aligned. Finally, we add a <strong>reference frame mount tool</strong> that allows placing three points to automatically generate a square frame for mounting objects in the real world.
+</p>
 
-    <section class="section" aria-labelledby="team">
-        <div class="card">
-            <h2 id="team">Team</h2>
-            <div class="team" role="list">
-                <article class="person" role="listitem">
-                    <img src="Cian_Headshot.png"
-                        alt="Portrait of Cian Kaisharis" width="318" height="220" loading="lazy" />
-                    <div class="bio">
-                        <h3>Cian Kaisharis</h3>
-                        <p> Cian is a senior majoring in Computer Science with strong proficiency in Python, Java, and
-                            JavaScript. He currently works as a Detection Engineer Intern at Cybriant, where he applies
-                            his technical and analytical skills to enhance cybersecurity operations. With a solid
-                            foundation in software development and a growing passion for threat detection and data
-                            analysis, Cian is dedicated to developing secure, efficient, and innovative solutions that
-                            strengthen organizational defenses and improve overall system performance.</p>
-                    </div>
-                </article>
-                <article class="person" role="listitem">
-                    <img src="Will_Headshot.png"
-                        alt="Portrait of William Cox" width="318" height="220" loading="lazy" />
-                    <div class="bio">
-                        <h3>William Cox</h3>
-                        <p>William is a senior at UGA in Computer Science. He has worked as an IT QA Analyst Co‑op and a
-                            CPLM Development Co‑op at Gulfstream Aerospace. Interests include VR, robotics, gaming, and
-                            3D printing.</p>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </section>
+<div class="features">
+<div class="feature">
+<div class="dot"></div>
+<div>
+<strong>MR Measuring Tape</strong>
+<p>Place starting and ending points, dynamically calculate distance, position labels, and maintain visibility as you measure.</p>
+</div>
+</div>
 
-    <footer class="footer">
-        <p>© <span id="year"></span> Bestest Team • VR Final Project • <span style="color: #b9c2cc">UGA — CS</span></p>
-    </footer>
-    </div>
+<div class="feature">
+<div class="dot"></div>
+<div>
+<strong>Reference Frame Generator</strong>
+<p>Place three points to auto‑generate a perfect square frame, complete with screw markers for real‑world mounting.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
 
-    <script>
-        document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
+<div class="col-5">
+<div class="card">
+<h2 id="milestones">Milestones</h2>
+<ol>
+<li>Configure Unity project + XR All‑in‑One SDK</li>
+<li>Implement MR measuring tape with start/end points</li>
+<li>Add measurement labels (inches + cm)</li>
+<li>Build level tool + surface alignment</li>
+<li>Implement reference frame mount generator</li>
+<li>Project polish and MR performance tuning</li>
+</ol>
+</div>
+</div>
+</section>
+
+<section class="section" aria-labelledby="team">
+<div class="card">
+<h2 id="team">Team</h2>
+<div class="team">
+<article class="person">
+<img src="Cian_Headshot.png" alt="Portrait of Cian Kaisharis" width="318" height="220" />
+<div class="bio">
+<h3>Cian Kaisharis</h3>
+<p>Cian is a senior majoring in Computer Science with strong experience in Python, Java, and JavaScript. As a Detection Engineer Intern at Cybriant, he works with cybersecurity automation, log analysis, and threat detection. He brings engineering precision and problem‑solving skills into building MR productivity tools.</p>
+</div>
+</article>
+
+<article class="person">
+<img src="Will_Headshot.png" alt="Portrait of William Cox" width="318" height="220" />
+<div class="bio">
+<h3>William Cox</h3>
+<p>William is a senior at UGA in Computer Science with experience in QA analysis and aerospace development. Interests include VR, robotics, gaming, and 3D printing, contributing strong MR development insight to the project.</p>
+</div>
+</article>
+</div>
+</div>
+</section>
+
+<footer class="footer">
+<p>© <span id="year"></span> Bestest Team • MR Productivity App • <span style="color: #b9c2cc">UGA — CS</span></p>
+</footer>
+</div>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 </body>
-
 </html>
