@@ -8659,6 +8659,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1648216160}
+  - component: {fileID: 1648216164}
   - component: {fileID: 1648216161}
   - component: {fileID: 1648216163}
   - component: {fileID: 1648216162}
@@ -8807,6 +8808,24 @@ MonoBehaviour:
   _readOnlyWideMotionModeHandPosesEnabled: 0
   wideMotionModeHandPosesEnabled: 0
   dynamicResolutionVersion: 1
+--- !u!114 &1648216164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1648216159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b023183069df224080314a560e6e1ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockId: e47682b9-c270-40b1-b16d-90b627a5ce1b
+  instanceId: 5af53aa1-cb16-48ac-b418-252fad47abf8
+  version: 1
+  installationRoutineCheckpoint:
+    _installationRoutineId: 
+    _installationVariants: []
 --- !u!1 &1652750465
 GameObject:
   m_ObjectHideFlags: 0
