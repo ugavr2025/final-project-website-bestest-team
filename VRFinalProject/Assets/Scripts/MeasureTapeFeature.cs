@@ -30,6 +30,9 @@ public class MeasureTapeFeature : NetworkBehaviour
 
     private OVRInput.Controller? currentController;
     private OVRCameraRig cameraRig;
+    
+    private const float NETWORK_UPDATE_INTERVAL = 0.05f;
+    private float lastNetworkUpdateTime;
 
 
     //might have issues with findfirstobjectbytype because findobjectoftype is deprecated
@@ -79,6 +82,7 @@ public class MeasureTapeFeature : NetworkBehaviour
 
     private void HandleDownAction(Transform tapeArea)
     {
+        Debug.Log($"[TapeMeasure] Creating tape at world position: {tapeArea.position}, local: {tapeArea.localPosition}");
         CreateNewTapeLine(tapeArea.position);
         AttachAndDetachMeasurementInfo(tapeArea);
         
@@ -94,9 +98,10 @@ public class MeasureTapeFeature : NetworkBehaviour
             CalculateMeasurements();
             AttachAndDetachMeasurementInfo(tapeArea);
             
-            if (IsSpawned)
+            if (IsSpawned && Time.time - lastNetworkUpdateTime >= NETWORK_UPDATE_INTERVAL)
             {
                 UpdateTapeLineServerRpc(savedTapeLines.Count - 1, tapeArea.position);
+                lastNetworkUpdateTime = Time.time;
             }
     }
 
@@ -106,7 +111,8 @@ public class MeasureTapeFeature : NetworkBehaviour
         
         if (IsSpawned)
         {
-            FinalizeTapeLineServerRpc(savedTapeLines.Count - 1, tapeArea.position);
+            Vector3 actualEndPosition = lastTapeLineRenderer.GetPosition(1);
+            FinalizeTapeLineServerRpc(savedTapeLines.Count - 1, actualEndPosition);
         }
     }
 
@@ -164,6 +170,9 @@ public class MeasureTapeFeature : NetworkBehaviour
         var centimeters = MeasuringTape.MetersToCentimeters(distance);
         var lastLine = savedTapeLines.Last();
         lastLine.TapeInfo.text = string.Format(measurementInfoFormat, $"{inches:F2}″ <i>{centimeters:F2}cm</i>");
+        
+        Debug.Log($"[TapeMeasure] Local measurement - Distance: {distance}m, Inches: {inches:F2}, CM: {centimeters:F2}");
+        Debug.Log($"[TapeMeasure] Positions - Start: {lastTapeLineRenderer.GetPosition(0)}, End: {lastTapeLineRenderer.GetPosition(1)}");
     }
 
     private void OnDestroy()
@@ -196,6 +205,8 @@ public class MeasureTapeFeature : NetworkBehaviour
     private void CreateTapeLineClientRpc(int index, Vector3 initialPosition, ulong senderClientId)
     {
         if (NetworkManager.Singleton.LocalClientId == senderClientId) return;
+
+        Debug.Log($"[TapeMeasure] Remote client {NetworkManager.Singleton.LocalClientId} creating tape from client {senderClientId} at position: {initialPosition}");
 
         if (!clientTapeLines.ContainsKey(senderClientId))
         {
@@ -278,6 +289,9 @@ public class MeasureTapeFeature : NetworkBehaviour
         lineRenderer.SetPosition(0, initialPosition);
         lineRenderer.SetPosition(1, initialPosition);
 
+        Debug.Log($"[TapeMeasure] Created remote tape line for client {clientId} at world position: {initialPosition}");
+        Debug.Log($"[TapeMeasure] LineRenderer width: {tapeWidth}, Local CameraRig position: {cameraRig.transform.position}, scale: {cameraRig.transform.localScale}");
+
         var measurementInfo = Instantiate(measurementInfoPrefab, Vector3.zero, Quaternion.identity).GetComponent<TextMeshPro>();
         measurementInfo.GetComponent<BillboardAlignment>().AttachTo(cameraRig.centerEyeAnchor);
         measurementInfo.gameObject.SetActive(true);
@@ -301,6 +315,9 @@ public class MeasureTapeFeature : NetworkBehaviour
                 var inches = MeasuringTape.MetersToInches(distance);
                 var centimeters = MeasuringTape.MetersToCentimeters(distance);
                 tape.TapeInfo.text = string.Format(measurementInfoFormat, $"{inches:F2}″ <i>{centimeters:F2}cm</i>");
+                
+                Debug.Log($"[TapeMeasure] Remote measurement from client {clientId} - Distance: {distance}m, Inches: {inches:F2}, CM: {centimeters:F2}");
+                Debug.Log($"[TapeMeasure] Remote positions - Start: {lineRenderer.GetPosition(0)}, End: {lineRenderer.GetPosition(1)}");
             }
         }
     }
