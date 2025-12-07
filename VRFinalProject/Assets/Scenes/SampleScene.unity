@@ -12409,6 +12409,7 @@ MonoBehaviour:
   buttonForMenuActivation: 256
   levelerPrefab: {fileID: 1860107125077732932, guid: a0132f01b57158e4fa914de389c1164a, type: 3}
   measureTapeFeature: {fileID: 1532807195802331486}
+  levelerGameObject: {fileID: 8162194357025237648}
 --- !u!4 &2006045690
 Transform:
   m_ObjectHideFlags: 0
@@ -46739,7 +46740,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ADD A LEVELER
+  m_text: TOGGLE LEVELER
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: eb44739c484b1b54bbc1a0d4d9dd1a50, type: 2}
   m_sharedMaterial: {fileID: -5839354330806206608, guid: eb44739c484b1b54bbc1a0d4d9dd1a50, type: 2}
