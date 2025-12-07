@@ -175,6 +175,30 @@ public class MeasureTapeFeature : NetworkBehaviour
         Debug.Log($"[TapeMeasure] Positions - Start: {lastTapeLineRenderer.GetPosition(0)}, End: {lastTapeLineRenderer.GetPosition(1)}");
     }
 
+    public void ClearAllTapes()
+    {
+        foreach (var tapeLine in savedTapeLines)
+        {
+            if (tapeLine.TapeLine != null)
+                Destroy(tapeLine.TapeLine);
+            if (tapeLine.TapeInfo != null)
+                Destroy(tapeLine.TapeInfo.gameObject);
+        }
+        savedTapeLines.Clear();
+
+        foreach (var clientTapes in clientTapeLines.Values)
+        {
+            foreach (var tapeLine in clientTapes)
+            {
+                if (tapeLine.TapeLine != null)
+                    Destroy(tapeLine.TapeLine);
+                if (tapeLine.TapeInfo != null)
+                    Destroy(tapeLine.TapeInfo.gameObject);
+            }
+        }
+        clientTapeLines.Clear();
+    }
+
     private void OnDestroy()
     {
         foreach (var tapeLine in savedTapeLines)
