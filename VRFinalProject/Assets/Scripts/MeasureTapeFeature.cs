@@ -94,19 +94,23 @@ public class MeasureTapeFeature : NetworkBehaviour
 
     private void HandleHoldAction(Transform tapeArea)
     {
-            lastTapeLineRenderer.SetPosition(1, tapeArea.position);
-            CalculateMeasurements();
-            AttachAndDetachMeasurementInfo(tapeArea);
-            
-            if (IsSpawned && Time.time - lastNetworkUpdateTime >= NETWORK_UPDATE_INTERVAL)
-            {
-                UpdateTapeLineServerRpc(savedTapeLines.Count - 1, tapeArea.position);
-                lastNetworkUpdateTime = Time.time;
-            }
+        if (lastTapeLineRenderer == null) return;
+
+        lastTapeLineRenderer.SetPosition(1, tapeArea.position);
+        CalculateMeasurements();
+        AttachAndDetachMeasurementInfo(tapeArea);
+        
+        if (IsSpawned && Time.time - lastNetworkUpdateTime >= NETWORK_UPDATE_INTERVAL)
+        {
+            UpdateTapeLineServerRpc(savedTapeLines.Count - 1, tapeArea.position);
+            lastNetworkUpdateTime = Time.time;
+        }
     }
 
     private void HandleUpAction(Transform tapeArea)
     {
+        if (lastTapeLineRenderer == null) return;
+
         AttachAndDetachMeasurementInfo(tapeArea, false);
         
         if (IsSpawned)
@@ -126,7 +130,7 @@ public class MeasureTapeFeature : NetworkBehaviour
         lastTapeLineRenderer.endWidth = tapeWidth;
         lastTapeLineRenderer.material = tapeMaterial;
         lastTapeLineRenderer.SetPosition(0, initialPosition);
-        //lastTapeLineRenderer.SetPosition(1, initialPosition);
+        lastTapeLineRenderer.SetPosition(1, initialPosition);
 
         lastMeasurementInfo = Instantiate(measurementInfoPrefab, Vector3.zero, Quaternion.identity).GetComponent<TextMeshPro>();
         lastMeasurementInfo.GetComponent<BillboardAlignment>().AttachTo(cameraRig.centerEyeAnchor);
@@ -186,17 +190,34 @@ public class MeasureTapeFeature : NetworkBehaviour
         }
         savedTapeLines.Clear();
 
-        foreach (var clientTapes in clientTapeLines.Values)
+        if (IsSpawned)
         {
-            foreach (var tapeLine in clientTapes)
+            ClearTapesServerRpc();
+        }
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    private void ClearTapesServerRpc(ServerRpcParams rpcParams = default)
+    {
+        ClearTapesClientRpc(rpcParams.Receive.SenderClientId);
+    }
+
+    [ClientRpc]
+    private void ClearTapesClientRpc(ulong senderClientId)
+    {
+        if (NetworkManager.Singleton.LocalClientId == senderClientId) return;
+
+        if (clientTapeLines.ContainsKey(senderClientId))
+        {
+            foreach (var tapeLine in clientTapeLines[senderClientId])
             {
                 if (tapeLine.TapeLine != null)
                     Destroy(tapeLine.TapeLine);
                 if (tapeLine.TapeInfo != null)
                     Destroy(tapeLine.TapeInfo.gameObject);
             }
+            clientTapeLines[senderClientId].Clear();
         }
-        clientTapeLines.Clear();
     }
 
     private void OnDestroy()
