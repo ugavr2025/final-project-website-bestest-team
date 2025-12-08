@@ -5,13 +5,15 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: Assets/Convai/ConvaiXR/ConvaiMR/Scenes/Convai Demo - MR.unity
+    guid: 7415a9bd0a867c7458d86c0bdd56cccb
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   m_configObjects:
-    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 6710c758be0529c4fb88c5fb0a1b2350, type: 2}
-    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: e27ab232aab67bd4ca9d68fa3af45caf, type: 2}
     com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: c9c97b78a7590164db971d5441913cff, type: 2}
-    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 847c11551fbad504c97e45fb36e158e3, type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 488684d5c1456e04094e3e4aa365d192, type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 4426925a6fb38e640b819f34904e86b8, type: 2}
   m_UseUCBPForAssetBundles: 0
