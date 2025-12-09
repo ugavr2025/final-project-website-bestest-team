@@ -179,6 +179,50 @@ public class MeasureTapeFeature : NetworkBehaviour
         Debug.Log($"[TapeMeasure] Positions - Start: {lastTapeLineRenderer.GetPosition(0)}, End: {lastTapeLineRenderer.GetPosition(1)}");
     }
 
+    public void DeleteLastTape()
+    {
+        if (savedTapeLines.Count > 0)
+        {
+            var lastTape = savedTapeLines[savedTapeLines.Count - 1];
+            
+            if (lastTape.TapeLine != null)
+                Destroy(lastTape.TapeLine);
+            if (lastTape.TapeInfo != null)
+                Destroy(lastTape.TapeInfo.gameObject);
+            
+            savedTapeLines.RemoveAt(savedTapeLines.Count - 1);
+
+            if (IsSpawned)
+            {
+                DeleteLastTapeServerRpc();
+            }
+        }
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    private void DeleteLastTapeServerRpc(ServerRpcParams rpcParams = default)
+    {
+        DeleteLastTapeClientRpc(rpcParams.Receive.SenderClientId);
+    }
+
+    [ClientRpc]
+    private void DeleteLastTapeClientRpc(ulong senderClientId)
+    {
+        if (NetworkManager.Singleton.LocalClientId == senderClientId) return;
+
+        if (clientTapeLines.ContainsKey(senderClientId) && clientTapeLines[senderClientId].Count > 0)
+        {
+            var lastTape = clientTapeLines[senderClientId][clientTapeLines[senderClientId].Count - 1];
+            
+            if (lastTape.TapeLine != null)
+                Destroy(lastTape.TapeLine);
+            if (lastTape.TapeInfo != null)
+                Destroy(lastTape.TapeInfo.gameObject);
+            
+            clientTapeLines[senderClientId].RemoveAt(clientTapeLines[senderClientId].Count - 1);
+        }
+    }
+
     public void ClearAllTapes()
     {
         foreach (var tapeLine in savedTapeLines)

@@ -13,6 +13,7 @@ public class MenuFeature : MonoBehaviour
     private List<GameObject> levelersAdded = new();
     private bool isLevelerVisible = false;
     private float lastButtonPressTime = 0f;
+    private float lastDeleteButtonPressTime = 0f;
     private const float BUTTON_COOLDOWN = 0.5f;
 
     private void Awake()
@@ -126,14 +127,23 @@ public class MenuFeature : MonoBehaviour
 
     public void DeleteAll()
     {
-        foreach (var leveler in levelersAdded)
-            Destroy(leveler);
-
-        levelersAdded.Clear();
+        if (Time.time - lastDeleteButtonPressTime < BUTTON_COOLDOWN)
+        {
+            Debug.Log($"Delete button pressed too soon! Ignoring. Time since last press: {Time.time - lastDeleteButtonPressTime}");
+            return;
+        }
+        
+        lastDeleteButtonPressTime = Time.time;
+        
+        if (levelersAdded.Count > 0)
+        {
+            Destroy(levelersAdded[levelersAdded.Count - 1]);
+            levelersAdded.RemoveAt(levelersAdded.Count - 1);
+        }
 
         if (measureTapeFeature != null)
         {
-            measureTapeFeature.ClearAllTapes();
+            measureTapeFeature.DeleteLastTape();
         }
     }
 }
