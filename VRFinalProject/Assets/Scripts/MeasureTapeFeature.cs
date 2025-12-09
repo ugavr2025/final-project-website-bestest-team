@@ -16,6 +16,8 @@ public class MeasureTapeFeature : NetworkBehaviour
     [SerializeField] private GameObject measurementInfoPrefab;
     [SerializeField] private Vector3 measurementInfoControllerOffset = new(0, 0.045f, 0);
 
+    [SerializeField] private float measurementInfoViewOffset = 0.05f;
+
     [SerializeField] private string measurementInfoFormat = "<mark=#0000005A padding=\"20, 20, 10, 10\"><color=white>{0}</color></mark>";
     private float measurementInfoLength = 0.01f;
 
@@ -146,26 +148,26 @@ public class MeasureTapeFeature : NetworkBehaviour
 
     private void AttachAndDetachMeasurementInfo(Transform tapeArea, bool attachToController = true)
     {
-        //Attached to controller while measuring
+        // Attached to controller while measuring
         if (attachToController)
         {
             lastMeasurementInfo.gameObject.SetActive(true);
             lastMeasurementInfo.transform.SetParent(tapeArea.transform.parent);
             lastMeasurementInfo.transform.localPosition = measurementInfoControllerOffset;
         }
-        //places between two points
+        // Place in front of the line when done
         else
         {
-            lastMeasurementInfo.transform.SetParent(lastTapeLineRenderer.transform);
-            var lineDirection = lastTapeLineRenderer.GetPosition(0) - lastTapeLineRenderer.GetPosition(1);
+            lastMeasurementInfo.gameObject.SetActive(true);
+            lastMeasurementInfo.transform.SetParent(null); // don't tie depth to line's transform
 
-            Vector3 lineCrossProduct = Vector3.Cross(lineDirection, Vector3.up);
-
-            Vector3 lineMidPoint = (lastTapeLineRenderer.GetPosition(0) + lastTapeLineRenderer.GetPosition(1)) / 2.0f;
-
-            lastMeasurementInfo.transform.position = lineMidPoint + (lineCrossProduct.normalized * measurementInfoLength);
+            if (lastTapeLineRenderer != null)
+            {
+                PositionMeasurementInfoInFrontOfLine(lastTapeLineRenderer, lastMeasurementInfo.transform);
+            }
         }
     }
+
 
     private void CalculateMeasurements()
     {
@@ -352,19 +354,17 @@ public class MeasureTapeFeature : NetworkBehaviour
                 {
                     lineRenderer.SetPosition(1, endPosition);
                     UpdateMeasurementForClientTape(senderClientId, index);
-                    
+
                     if (tape.TapeInfo != null)
                     {
-                        tape.TapeInfo.transform.SetParent(lineRenderer.transform);
-                        var lineDirection = lineRenderer.GetPosition(0) - lineRenderer.GetPosition(1);
-                        Vector3 lineCrossProduct = Vector3.Cross(lineDirection, Vector3.up);
-                        Vector3 lineMidPoint = (lineRenderer.GetPosition(0) + lineRenderer.GetPosition(1)) / 2.0f;
-                        tape.TapeInfo.transform.position = lineMidPoint + (lineCrossProduct.normalized * measurementInfoLength);
+                        tape.TapeInfo.transform.SetParent(null);
+                        PositionMeasurementInfoInFrontOfLine(lineRenderer, tape.TapeInfo.transform);
                     }
                 }
             }
         }
     }
+
 
     private void CreateNewTapeLineForClient(ulong clientId, Vector3 initialPosition)
     {
@@ -409,5 +409,22 @@ public class MeasureTapeFeature : NetworkBehaviour
                 Debug.Log($"[TapeMeasure] Remote positions - Start: {lineRenderer.GetPosition(0)}, End: {lineRenderer.GetPosition(1)}");
             }
         }
+    }
+    private void PositionMeasurementInfoInFrontOfLine(LineRenderer line, Transform infoTransform)
+    {
+        if (cameraRig == null || cameraRig.centerEyeAnchor == null)
+            return;
+
+        // Midpoint of the tape
+        Vector3 p0 = line.GetPosition(0);
+        Vector3 p1 = line.GetPosition(1);
+        Vector3 mid = (p0 + p1) * 0.5f;
+
+        // Direction from line toward the user's eye
+        Transform eye = cameraRig.centerEyeAnchor;
+        Vector3 toEye = (eye.position - mid).normalized;
+
+        // Place label a little towards the eye so it's in front of the line
+        infoTransform.position = mid + toEye * measurementInfoViewOffset;
     }
 }
